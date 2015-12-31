@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.Id;
 
-public class Pedido11 {
+public class Pedido {
 	@Id
 	private Long id;
 	private Cliente cliente;
