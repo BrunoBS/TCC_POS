@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 public class Pedido {
 	@Id
-	private LSong id;
+	private Long id;
 	private Cliente cliente;
 	private Integer numero;
 	private List<Produto> produtos = new ArrayList<Produto>();
