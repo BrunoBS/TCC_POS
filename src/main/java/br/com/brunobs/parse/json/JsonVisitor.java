@@ -92,7 +92,6 @@ public class JsonVisitor {
 	}
 
 	private void addAttribute(Object key) {
-		System.out.println(key);
 		this.builder.append("\"");
 		this.builder.append(key);
 		this.builder.append("\"");

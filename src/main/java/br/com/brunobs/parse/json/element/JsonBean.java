@@ -58,6 +58,7 @@ public class JsonBean implements JsonElement {
 					}
 				}
 			} catch (Exception e) {
+				e.printStackTrace();
 
 			}
 			this.element.endObject();

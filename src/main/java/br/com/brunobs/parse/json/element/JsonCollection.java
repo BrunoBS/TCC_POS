@@ -16,30 +16,33 @@ public class JsonCollection extends JsonTypeElementColecaoAbstract {
 	}
 
 	public void execute(Object objeto) {
+		String url = this.uriInfo != null ? this.uriInfo.getRequestUri().getPath() : "Não foi localizado a URL";
 
 		if (getType(objeto)) {
-			if (!this.element.isElementoPai() && this.uriInfo != null) {
-				stringValue(this.uriInfo.getRequestUri().getPath());
+			if (!this.element.isElementoPai()) {
 
-			} else {
-
-				if (this.element.isElementoPai()) {
-					this.element.setElementoPai(false);
-					Iterator it = ((Collection) objeto).iterator();
-					InicioDoArray();
-					while (it.hasNext()) {
-						addArrayElement(it.next(), it.hasNext());
-					}
-					finalDoArray();
+				if (this.uriInfo == null) {
+					preencheDados(objeto);
 				} else {
-
-					addArrayElement(this.uriInfo.getRequestUri().getPath(), false);
+					stringValue(url);
 				}
+			} else {
+				preencheDados(objeto);
 
 			}
 		} else {
 			this.jsonElement.execute(objeto);
 		}
+	}
+
+	private void preencheDados(Object objeto) {
+		this.element.setElementoPai(false);
+		Iterator<Collection> it = ((Collection) objeto).iterator();
+		InicioDoArray();
+		while (it.hasNext()) {
+			addArrayElement(it.next(), it.hasNext());
+		}
+		finalDoArray();
 	}
 
 	public void nextElement(JsonElement jsonElement) {
