@@ -7,7 +7,7 @@ import org.junit.Test;
 import br.com.brunobs.PedidoDAO;
 import br.com.brunobs.parse.json.JSONSerializer;
 
-public class JsonTest {
+public class RepresentacaoTest {
 
 	private final UriInfo uriInfo = null;
 
