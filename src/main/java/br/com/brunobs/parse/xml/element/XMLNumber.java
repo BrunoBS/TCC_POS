@@ -1,16 +1,16 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import java.math.BigDecimal;
 
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
 
-public class JsonNumber implements ParseElement {
+public class XMLNumber implements ParseElement {
 
 	private ParseVisitor element;
-	private ParseElement jsonElement;
+	private ParseElement xmlElement;
 
-	public JsonNumber(ParseVisitor element) {
+	public XMLNumber(ParseVisitor element) {
 		this.element = element;
 	}
 
@@ -22,13 +22,13 @@ public class JsonNumber implements ParseElement {
 		if (getType(object)) {
 			getNumber(object);
 		} else {
-			this.jsonElement.execute(object);
+			this.xmlElement.execute(object);
 		}
 
 	}
 
-	public void nextElement(ParseElement jsonElement) {
-		this.jsonElement = jsonElement;
+	public void nextElement(ParseElement xmlElement) {
+		this.xmlElement = xmlElement;
 	}
 
 	private void getNumber(Object object) {

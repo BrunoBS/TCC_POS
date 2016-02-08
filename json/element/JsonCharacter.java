@@ -1,13 +1,12 @@
 package br.com.brunobs.parse.json.element;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
 public class JsonCharacter extends JsonTypeElementStringAbstract {
 
-	private ParseElement jsonElement;
+	private JsonElement jsonElement;
 
-	public JsonCharacter(ParseVisitor element) {
+	public JsonCharacter(JsonVisitor element) {
 		super(element);
 	}
 
@@ -23,7 +22,7 @@ public class JsonCharacter extends JsonTypeElementStringAbstract {
 		return objeto instanceof Character;
 	}
 
-	public void nextElement(ParseElement jsonElement) {
+	public void nextElement(JsonElement jsonElement) {
 		this.jsonElement = jsonElement;
 	}
 }

@@ -3,15 +3,14 @@ package br.com.brunobs.parse.json.element;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
-public abstract class JsonTypeElementStringAbstract implements ParseElement {
+public abstract class JsonTypeElementStringAbstract implements JsonElement {
 
-	protected ParseVisitor element;
+	protected JsonVisitor element;
 	public final static char[] HEX = "0123456789ABCDEF".toCharArray();
 
-	public JsonTypeElementStringAbstract(ParseVisitor element) {
+	public JsonTypeElementStringAbstract(JsonVisitor element) {
 		this.element = element;
 	}
 

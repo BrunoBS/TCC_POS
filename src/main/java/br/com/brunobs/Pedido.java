@@ -1,6 +1,7 @@
 package br.com.brunobs;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Id;
@@ -10,10 +11,13 @@ public class Pedido {
 	private Long id;
 	private Cliente cliente;
 	private Integer numero;
+	private Date data;
 	private List<Produto> produtos = new ArrayList<Produto>();
 
 	public Pedido() {
 		super();
+		this.data = new Date();
+
 	}
 
 	@Override
@@ -23,10 +27,12 @@ public class Pedido {
 
 	public Pedido(Long id, Cliente cliente, Integer numero, List<Produto> produtos) {
 		super();
+		this.data = new Date();
 		this.id = id;
 		this.cliente = cliente;
 		this.numero = numero;
 		this.produtos = produtos;
+
 	}
 
 	public Long getId() {
@@ -47,6 +53,10 @@ public class Pedido {
 
 	public void setNumero(Integer numero) {
 		this.numero = numero;
+	}
+
+	public Date getData() {
+		return this.data;
 	}
 
 	public List<Produto> getProdutos() {

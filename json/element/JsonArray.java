@@ -4,14 +4,13 @@ import java.lang.reflect.Array;
 
 import javax.ws.rs.core.UriInfo;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
 public class JsonArray extends JsonTypeElementColecaoAbstract {
 
-	private ParseElement jsonElement;
+	private JsonElement jsonElement;
 
-	public JsonArray(ParseVisitor element, UriInfo uriInfo) {
+	public JsonArray(JsonVisitor element, UriInfo uriInfo) {
 		super(element, uriInfo);
 	}
 
@@ -32,7 +31,7 @@ public class JsonArray extends JsonTypeElementColecaoAbstract {
 		return object.getClass().isArray();
 	}
 
-	public void nextElement(ParseElement jsonElement) {
+	public void nextElement(JsonElement jsonElement) {
 		this.jsonElement = jsonElement;
 	}
 

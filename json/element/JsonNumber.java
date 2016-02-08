@@ -2,15 +2,14 @@ package br.com.brunobs.parse.json.element;
 
 import java.math.BigDecimal;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
-public class JsonNumber implements ParseElement {
+public class JsonNumber implements JsonElement {
 
-	private ParseVisitor element;
-	private ParseElement jsonElement;
+	private JsonVisitor element;
+	private JsonElement jsonElement;
 
-	public JsonNumber(ParseVisitor element) {
+	public JsonNumber(JsonVisitor element) {
 		this.element = element;
 	}
 
@@ -27,7 +26,7 @@ public class JsonNumber implements ParseElement {
 
 	}
 
-	public void nextElement(ParseElement jsonElement) {
+	public void nextElement(JsonElement jsonElement) {
 		this.jsonElement = jsonElement;
 	}
 

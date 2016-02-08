@@ -4,26 +4,25 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.Collections;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseSet;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.ChainedSet;
+import br.com.brunobs.parse.json.JsonVisitor;
 
-public class JsonBean implements ParseElement {
+public class JsonBean implements JsonElement {
 
-	private ParseVisitor element;
+	private JsonVisitor element;
 
-	public JsonBean(ParseVisitor element) {
+	public JsonBean(JsonVisitor element) {
 		this.element = element;
 	}
 
-	private ParseSet visits = new ParseSet(Collections.EMPTY_SET);
+	private ChainedSet visits = new ChainedSet(Collections.EMPTY_SET);
 
-	public void nextElement(ParseElement jsonElement) {
+	public void nextElement(JsonElement jsonElement) {
 	}
 
 	public void execute(Object bean) {
 		if (!this.visits.contains(bean)) {
-			this.visits = new ParseSet(this.visits);
+			this.visits = new ChainedSet(this.visits);
 			this.visits.add(bean);
 			this.element.inicioObjeto();
 			try {
@@ -63,7 +62,7 @@ public class JsonBean implements ParseElement {
 
 			}
 			this.element.endObject();
-			this.visits = (ParseSet) this.visits.getParent();
+			this.visits = (ChainedSet) this.visits.getParent();
 		}
 	}
 

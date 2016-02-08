@@ -16,7 +16,7 @@ import br.com.brunobs.produces.NomeElemento;
 @Path("/")
 public class PedidoService {
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	@Path("pedidos")
 	@NomeElemento(nome = "pedidos")
 	public List<Pedido> findPedidos() {
@@ -25,7 +25,7 @@ public class PedidoService {
 
 	@GET
 	@Path("pedido/{value}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	@NomeElemento(nome = "pedido")
 	public Pedido findPedido(@PathParam("value") int value) {
 		return PedidoDAO.getPedidos().get(value);
@@ -33,7 +33,7 @@ public class PedidoService {
 
 	@GET
 	@Path("pedido/{value}/produtos/")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	@NomeElemento(nome = "produtos")
 	public List<Produto> findProdutos(@PathParam("value") int value) {
 		return PedidoDAO.getPedidos().get(value).getProdutos();
@@ -41,7 +41,7 @@ public class PedidoService {
 
 	@GET
 	@Path("pedido/{pedido}/produto/{produto}")
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_XML)
 	@NomeElemento(nome = "produto")
 	public Produto findProduto(@PathParam("pedido") int pedido, @PathParam("produto") int produto) {
 		return PedidoDAO.getPedidos().get(pedido).getProdutos().get(produto);

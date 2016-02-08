@@ -1,4 +1,4 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import java.util.Iterator;
 import java.util.Map;
@@ -6,12 +6,12 @@ import java.util.Map;
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
 
-public class JsonMap implements ParseElement {
+public class XMLMap implements ParseElement {
 
 	private ParseVisitor element;
 	private ParseElement jsonElement;
 
-	public JsonMap(ParseVisitor element) {
+	public XMLMap(ParseVisitor element) {
 		this.element = element;
 	}
 
@@ -35,7 +35,8 @@ public class JsonMap implements ParseElement {
 	private void getMap(Object objeto) {
 		if (getType(objeto)) {
 			Map map = (Map) objeto;
-			this.element.inicioObjeto();
+			String nomeElemento = this.element.getNomeElemento();
+			this.element.tagInicial(nomeElemento);
 			Iterator it = map.keySet().iterator();
 			boolean firstField = true;
 			while (it.hasNext()) {
@@ -46,11 +47,11 @@ public class JsonMap implements ParseElement {
 					firstField = false;
 				}
 			}
-			this.element.endObject();
+			this.element.tagFinal(nomeElemento);
 		} else {
 			this.jsonElement.execute(objeto);
-		}
 
+		}
 	}
 
 }

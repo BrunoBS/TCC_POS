@@ -1,14 +1,14 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
 
-public class JsonBoolean implements ParseElement {
+public class XMLBoolean implements ParseElement {
 
 	private ParseVisitor element;
-	private ParseElement jsonElement;
+	private ParseElement xmlElement;
 
-	public JsonBoolean(ParseVisitor element) {
+	public XMLBoolean(ParseVisitor element) {
 		this.element = element;
 	}
 
@@ -17,7 +17,7 @@ public class JsonBoolean implements ParseElement {
 			Boolean obj = (Boolean) object;
 			this.element.add(obj.toString());
 		} else {
-			this.jsonElement.execute(object);
+			this.xmlElement.execute(object);
 		}
 	}
 
@@ -25,8 +25,8 @@ public class JsonBoolean implements ParseElement {
 		return object instanceof Boolean;
 	}
 
-	public void nextElement(ParseElement jsonElement) {
-		this.jsonElement = jsonElement;
+	public void nextElement(ParseElement xmlElement) {
+		this.xmlElement = xmlElement;
 
 	}
 }

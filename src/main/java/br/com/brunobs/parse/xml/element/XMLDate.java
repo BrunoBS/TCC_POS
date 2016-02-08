@@ -1,4 +1,4 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -6,17 +6,17 @@ import java.util.Date;
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
 
-public class JsonDate extends JsonTypeElementStringAbstract {
+public class XMLDate extends XMLTypeElementStringAbstract {
 
-	private ParseElement jsonElement;
+	private ParseElement xmlElement;
 	private SimpleDateFormat format;
 
-	public JsonDate(ParseVisitor element, SimpleDateFormat format) {
+	public XMLDate(ParseVisitor element, SimpleDateFormat format) {
 		super(element);
 		this.format = format;
 	}
 
-	public JsonDate(ParseVisitor element) {
+	public XMLDate(ParseVisitor element) {
 		super(element);
 		this.format = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -27,12 +27,12 @@ public class JsonDate extends JsonTypeElementStringAbstract {
 			Date date = ((Date) object);
 			stringValue(this.format.format(date));
 		} else {
-			this.jsonElement.execute(object);
+			this.xmlElement.execute(object);
 		}
 	}
 
-	public void nextElement(ParseElement jsonElement) {
-		this.jsonElement = jsonElement;
+	public void nextElement(ParseElement xmlElement) {
+		this.xmlElement = xmlElement;
 	}
 
 	private boolean getType(Object object) {

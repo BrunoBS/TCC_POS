@@ -25,7 +25,7 @@ public class Produto {
 
 	@Override
 	public String toString() {
-		return this.nome;
+		return "PRODUTO> " + this.nome;
 	}
 
 	public Long getId() {

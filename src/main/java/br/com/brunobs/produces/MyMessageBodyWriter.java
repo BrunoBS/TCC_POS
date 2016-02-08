@@ -15,10 +15,10 @@ import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
 
+import br.com.brunobs.parse.Serializador;
 import br.com.brunobs.parse.csv.CSVParse;
 import br.com.brunobs.parse.json.JSONSerializer;
-
-import com.thoughtworks.xstream.XStream;
+import br.com.brunobs.parse.xml.XMLSerializer;
 
 @Provider
 @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN })
@@ -42,25 +42,31 @@ public class MyMessageBodyWriter implements MessageBodyWriter<Object> {
 			OutputStream entityStream) throws IOException, WebApplicationException {
 		String retorno = "";
 		DataOutputStream dos = new DataOutputStream(entityStream);
+		String nomeDoElemento = getNomeDoElelemento(type, annotation);
+		Serializador serializador;
 
 		if (MediaType.APPLICATION_JSON.equals(mediaType.toString())) {
-			JSONSerializer serial = new JSONSerializer(this.uriInfo);
-			String nomeDoElemento = type.getTypeName();
-			for (Annotation anotacao : annotation) {
-				if (anotacao instanceof NomeElemento) {
-					nomeDoElemento = ((NomeElemento) anotacao).nome();
-				}
-			}
-
-			retorno = serial.serialize(nomeDoElemento, obj).trim();
+			serializador = new JSONSerializer(this.uriInfo);
+			retorno = serializador.serialize(nomeDoElemento, obj).trim();
 		}
 		if (MediaType.APPLICATION_XML.equals(mediaType.toString())) {
-			retorno = new XStream().toXML(obj).trim();
+			serializador = new XMLSerializer(this.uriInfo);
+			retorno = serializador.serialize(nomeDoElemento, obj).trim();
 		}
 		if (MediaType.TEXT_PLAIN.equals(mediaType.toString())) {
 			retorno = new CSVParse(this.uriInfo).toCSV(obj);
 		}
 
 		dos.writeBytes(retorno);
+	}
+
+	private String getNomeDoElelemento(Type type, Annotation[] annotation) {
+		String nomeDoElemento = type.getTypeName();
+		for (Annotation anotacao : annotation) {
+			if (anotacao instanceof NomeElemento) {
+				nomeDoElemento = ((NomeElemento) anotacao).nome();
+			}
+		}
+		return nomeDoElemento;
 	}
 }

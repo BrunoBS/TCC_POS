@@ -1,13 +1,13 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
 
-public class JsonString extends JsonTypeElementStringAbstract {
+public class XMLString extends XMLTypeElementStringAbstract {
 
-	private ParseElement jsonElement;
+	private ParseElement xmlElement;
 
-	public JsonString(ParseVisitor element) {
+	public XMLString(ParseVisitor element) {
 		super(element);
 	}
 
@@ -15,12 +15,12 @@ public class JsonString extends JsonTypeElementStringAbstract {
 		if (getType(objeto)) {
 			stringValue(objeto);
 		} else {
-			this.jsonElement.execute(objeto);
+			this.xmlElement.execute(objeto);
 		}
 	}
 
-	public void nextElement(ParseElement jsonElement) {
-		this.jsonElement = jsonElement;
+	public void nextElement(ParseElement xmlElement) {
+		this.xmlElement = xmlElement;
 	}
 
 	private boolean getType(Object objeto) {

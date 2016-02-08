@@ -1,4 +1,4 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import java.lang.reflect.Array;
 
@@ -7,24 +7,24 @@ import javax.ws.rs.core.UriInfo;
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
 
-public class JsonArray extends JsonTypeElementColecaoAbstract {
+public class XMLArray extends XMLTypeElementColecaoAbstract {
+	private ParseElement xmlElement;
 
-	private ParseElement jsonElement;
-
-	public JsonArray(ParseVisitor element, UriInfo uriInfo) {
+	public XMLArray(ParseVisitor element, UriInfo uriInfo) {
 		super(element, uriInfo);
 	}
 
 	public void execute(Object object) {
+		String nomeElemento = this.element.getNomeElemento();
 		if (getType(object)) {
-			InicioDoArray();
+			this.element.tagInicial(nomeElemento);
 			int length = Array.getLength(object);
 			for (int i = 0; i < length; ++i) {
-				addArrayElement(Array.get(object, i), i < length - 1);
+				addArrayElement(Array.get(object, i));
 			}
-			finalDoArray();
+			this.element.tagFinal(nomeElemento);
 		} else {
-			this.jsonElement.execute(object);
+			this.xmlElement.execute(object);
 		}
 	}
 
@@ -33,7 +33,7 @@ public class JsonArray extends JsonTypeElementColecaoAbstract {
 	}
 
 	public void nextElement(ParseElement jsonElement) {
-		this.jsonElement = jsonElement;
+		this.xmlElement = jsonElement;
 	}
 
 }

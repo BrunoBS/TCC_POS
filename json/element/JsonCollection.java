@@ -5,30 +5,26 @@ import java.util.Iterator;
 
 import javax.ws.rs.core.UriInfo;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
 public class JsonCollection extends JsonTypeElementColecaoAbstract {
 
-	private ParseElement jsonElement;
-	private String url;
+	private JsonElement jsonElement;
 
-	public JsonCollection(ParseVisitor element, UriInfo uriInfo) {
+	public JsonCollection(JsonVisitor element, UriInfo uriInfo) {
 		super(element, uriInfo);
-		this.url = this.uriInfo != null ? this.uriInfo.getRequestUri().getPath() : "Não foi localizado a URL";
 	}
 
 	public void execute(Object objeto) {
+		String url = this.uriInfo != null ? this.uriInfo.getRequestUri().getPath() : "Não foi localizado a URL";
 
 		if (getType(objeto)) {
-			if (!this.element.isPrimeiroElemento()) {
-				// == E NAO != TODO FAZER A REGRA PARA GERAR A URL> NÃO SEI
-				// COMO!
+			if (!this.element.isElementoPai()) {
 
-				if (this.uriInfo != null) {
+				if (this.uriInfo == null) {
 					preencheDados(objeto);
 				} else {
-					stringValue(this.url);
+					stringValue(url);
 				}
 			} else {
 				preencheDados(objeto);
@@ -40,7 +36,7 @@ public class JsonCollection extends JsonTypeElementColecaoAbstract {
 	}
 
 	private void preencheDados(Object objeto) {
-		this.element.setPrimeiroElemento(false);
+		this.element.setElementoPai(false);
 		Iterator<Collection> it = ((Collection) objeto).iterator();
 		InicioDoArray();
 		while (it.hasNext()) {
@@ -49,7 +45,7 @@ public class JsonCollection extends JsonTypeElementColecaoAbstract {
 		finalDoArray();
 	}
 
-	public void nextElement(ParseElement jsonElement) {
+	public void nextElement(JsonElement jsonElement) {
 		this.jsonElement = jsonElement;
 	}
 

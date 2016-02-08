@@ -1,14 +1,13 @@
 package br.com.brunobs.parse.json.element;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
-public class JsonNull implements ParseElement {
+public class JsonNull implements JsonElement {
 
-	private ParseVisitor element;
-	private ParseElement jsonElement;
+	private JsonVisitor element;
+	private JsonElement jsonElement;
 
-	public JsonNull(ParseVisitor element) {
+	public JsonNull(JsonVisitor element) {
 		this.element = element;
 	}
 
@@ -25,7 +24,7 @@ public class JsonNull implements ParseElement {
 		return object == null;
 	}
 
-	public void nextElement(ParseElement jsonElement) {
+	public void nextElement(JsonElement jsonElement) {
 		this.jsonElement = jsonElement;
 
 	}

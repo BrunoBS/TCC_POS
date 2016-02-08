@@ -2,14 +2,14 @@ package br.com.brunobs.parse.json.element;
 
 import javax.ws.rs.core.UriInfo;
 
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
 public abstract class JsonTypeElementColecaoAbstract extends JsonTypeElementStringAbstract {
 
-	protected ParseVisitor element;
+	protected JsonVisitor element;
 	protected UriInfo uriInfo;
 
-	public JsonTypeElementColecaoAbstract(ParseVisitor element, UriInfo uriInfo) {
+	public JsonTypeElementColecaoAbstract(JsonVisitor element, UriInfo uriInfo) {
 		super(element);
 		this.uriInfo = uriInfo;
 		this.element = element;
@@ -17,7 +17,7 @@ public abstract class JsonTypeElementColecaoAbstract extends JsonTypeElementStri
 
 	protected void addArrayElement(Object object, boolean isLast) {
 		int len = this.element.getBuilder().length();
-		this.element.parse(object);
+		this.element.json(object);
 		if (len < this.element.getBuilder().length()) {
 			if (isLast)
 				this.element.add(',');

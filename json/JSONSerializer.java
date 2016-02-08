@@ -2,9 +2,7 @@ package br.com.brunobs.parse.json;
 
 import javax.ws.rs.core.UriInfo;
 
-import br.com.brunobs.parse.Serializador;
-
-public class JSONSerializer implements Serializador {
+public class JSONSerializer {
 
 	private UriInfo uriInfo;
 
@@ -18,19 +16,18 @@ public class JSONSerializer implements Serializador {
 	}
 
 	public String serialize(String rootName, Object target) {
-		return new JSONParseVisitor(this.uriInfo).visit(rootName, target);
+		return new JsonVisitor(this.uriInfo).visit(rootName, target);
 	}
 
 	public String serialize(Object target) {
-		return new JSONParseVisitor(this.uriInfo).visit(target);
+		return new JsonVisitor(this.uriInfo).visit(target);
 	}
 
 	public String prettyPrint(Object target) {
-		return new JSONParseVisitor(this.uriInfo).visit(target);
+		return new JsonVisitor(this.uriInfo).visit(target);
 	}
 
 	public String prettyPrint(String rootName, Object target) {
-		return new JSONParseVisitor(this.uriInfo).visit(rootName, target);
+		return new JsonVisitor(this.uriInfo).visit(rootName, target);
 	}
-
 }

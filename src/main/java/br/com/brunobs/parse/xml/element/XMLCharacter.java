@@ -1,13 +1,13 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
 
-public class JsonCharacter extends JsonTypeElementStringAbstract {
+public class XMLCharacter extends XMLTypeElementStringAbstract {
 
-	private ParseElement jsonElement;
+	private ParseElement xmlElement;
 
-	public JsonCharacter(ParseVisitor element) {
+	public XMLCharacter(ParseVisitor element) {
 		super(element);
 	}
 
@@ -15,7 +15,7 @@ public class JsonCharacter extends JsonTypeElementStringAbstract {
 		if (getType(objeto)) {
 			stringValue(objeto);
 		} else {
-			this.jsonElement.execute(objeto);
+			this.xmlElement.execute(objeto);
 		}
 	}
 
@@ -23,7 +23,7 @@ public class JsonCharacter extends JsonTypeElementStringAbstract {
 		return objeto instanceof Character;
 	}
 
-	public void nextElement(ParseElement jsonElement) {
-		this.jsonElement = jsonElement;
+	public void nextElement(ParseElement xmlElement) {
+		this.xmlElement = xmlElement;
 	}
 }

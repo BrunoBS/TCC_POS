@@ -1,13 +1,12 @@
 package br.com.brunobs.parse.json.element;
 
-import br.com.brunobs.parse.ParseElement;
-import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.json.JsonVisitor;
 
 public class JsonNameClass extends JsonTypeElementStringAbstract {
 
-	private ParseElement jsonElement;
+	private JsonElement jsonElement;
 
-	public JsonNameClass(ParseVisitor element) {
+	public JsonNameClass(JsonVisitor element) {
 		super(element);
 	}
 
@@ -19,7 +18,7 @@ public class JsonNameClass extends JsonTypeElementStringAbstract {
 		}
 	}
 
-	public void nextElement(ParseElement jsonElement) {
+	public void nextElement(JsonElement jsonElement) {
 		this.jsonElement = jsonElement;
 	}
 

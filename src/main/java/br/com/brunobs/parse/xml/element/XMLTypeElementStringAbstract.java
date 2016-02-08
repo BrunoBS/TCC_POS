@@ -1,22 +1,22 @@
-package br.com.brunobs.parse.json.element;
+package br.com.brunobs.parse.xml.element;
 
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 
 import br.com.brunobs.parse.ParseElement;
 import br.com.brunobs.parse.ParseVisitor;
+import br.com.brunobs.parse.ParseVisitor;
 
-public abstract class JsonTypeElementStringAbstract implements ParseElement {
+public abstract class XMLTypeElementStringAbstract implements ParseElement {
 
 	protected ParseVisitor element;
 	public final static char[] HEX = "0123456789ABCDEF".toCharArray();
 
-	public JsonTypeElementStringAbstract(ParseVisitor element) {
+	public XMLTypeElementStringAbstract(ParseVisitor element) {
 		this.element = element;
 	}
 
 	protected void stringValue(Object object) {
-		this.element.add('"');
 		CharacterIterator it = new StringCharacterIterator(object.toString());
 		for (char c = it.first(); c != CharacterIterator.DONE; c = it.next()) {
 			if (c == '"') {
@@ -39,7 +39,7 @@ public abstract class JsonTypeElementStringAbstract implements ParseElement {
 				this.element.add(c);
 			}
 		}
-		this.element.add('"');
+
 	}
 
 	private void unicode(char c) {
